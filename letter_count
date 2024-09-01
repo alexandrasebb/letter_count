@@ -35,3 +35,38 @@ print(f"Number of missing letters: {missing_letter_count}")
 print(f"These are: {missing_letters}")
 
 print(f"These are the letters {name} contains, sorted by frequency (highest to lowest) and alphabetically: {sorted_letter_counts}")
+
+# Define Scrabble scores
+scrabble_scores = {'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4, 'G': 2, 'H': 4, 'I': 1, 'J': 8, 'K': 5, 'L': 1, 'M': 3, 'N': 1, 'O': 1, 'P': 3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1, 'V': 4, 'W': 4, 'X': 8, 'Y': 4, 'Z': 10}
+
+# Define available Scrabble tiles
+scrabble_tiles = {'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2, 'G': 3, 'H': 2, 'I': 9, 'J': 1, 'K': 1, 'L': 4, 'M': 2, 'N': 6, 'O': 8, 'P': 2, 'Q': 1, 'R': 6, 'S': 4, 'T': 6, 'U': 4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 'Z': 1}
+
+# Initialise a variable to store the total score
+total_score = 0
+
+# Track the number of tiles used
+tiles_used = {letter: 0 for letter in scrabble_tiles}
+
+# Calculate the total potential Scrabble score for the name
+for letter in name_lowered:
+    upper_letter = letter.upper()
+    if upper_letter in scrabble_scores:
+        if tiles_used[upper_letter] < scrabble_tiles[upper_letter]:  # Check if tiles are available
+            total_score += scrabble_scores[upper_letter]  # Add score
+            tiles_used[upper_letter] += 1  # Use one tile
+
+# Include the total score in the output
+print(f"The total potential Scrabble score for {name} is: {total_score}")
+
+# Initialise a variable to store the total maximum score
+max_score = 0
+
+# Calculate the maximum Scrabble score with unlimited tiles
+for letter in name_lowered:
+    if letter.isalpha():  # Only consider alphabetic characters
+        upper_letter = letter.upper()
+        max_score += scrabble_scores[upper_letter]  # Add the score for the letter
+
+# Print the maximum Scrabble score
+print(f"The maximum Scrabble score for {name} with unlimited tiles is: {max_score}")
