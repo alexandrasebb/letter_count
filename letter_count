@@ -30,6 +30,8 @@ percentage_collected = int((letters_in_name_count / 26) * 100)
 # Print results
 print(f"{name} is {name_count} characters long and contains {letters_in_name_count} unique letters")
 print(f"You have collected {percentage_collected} % of the alphabet")
+
 print(f"Number of missing letters: {missing_letter_count}")
 print(f"These are: {missing_letters}")
+
 print(f"These are the letters {name} contains, sorted by frequency (highest to lowest) and alphabetically: {sorted_letter_counts}")
