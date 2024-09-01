@@ -1,0 +1,35 @@
+# Input
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+name = "Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"
+name_lowered = name.lower()
+
+# Count letter frequencies
+name_letter_counts = {}
+for letter in name_lowered:
+  if letter.isalpha():
+    if letter not in name_letter_counts:
+      name_letter_counts[letter] = 1
+    else:
+      name_letter_counts[letter] = name_letter_counts[letter] + 1
+
+# Sort letters by frequency (highest to lowest) and alphabetically
+sorted_letter_counts = dict(sorted(name_letter_counts.items(), key=lambda item: (-item[1], item[0])))
+
+# Determine missing letters
+missing_letters = []
+for letter in alphabet:
+  if letter not in name_letter_counts:
+    missing_letters.append(letter)
+
+# Calculate counts and percentages
+name_count = len(name)
+missing_letter_count = len(missing_letters)
+letters_in_name_count = len(name_letter_counts)
+percentage_collected = int((letters_in_name_count / 26) * 100)
+
+# Print results
+print(f"{name} is {name_count} characters long and contains {letters_in_name_count} unique letters")
+print(f"You have collected {percentage_collected} % of the alphabet")
+print(f"Number of missing letters: {missing_letter_count}")
+print(f"These are: {missing_letters}")
+print(f"These are the letters {name} contains, sorted by frequency (highest to lowest) and alphabetically: {sorted_letter_counts}")
